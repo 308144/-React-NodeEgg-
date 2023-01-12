@@ -1,0 +1,45 @@
+{
+  "type": "normal",
+  "excludePath": [
+    "icons",
+    "config",
+    ".DS_Store",
+    "home_bg.png",
+    "favicon.png",
+    "pro_icon.svg",
+    "CNAME"
+  ],
+  "dev": [
+    {
+      "ali": {
+        "region": "cn-qingdao",
+        "bucket": "qd-cms-dev",
+        "appPath": "/cms/demo"
+      },
+      "build": "npm run build:dev",
+      "branch": "dev"
+    }
+  ],
+  "pre": [
+    {
+      "ali": {
+        "region": "cn-hongkong",
+        "bucket": "hk-pre",
+        "appPath": "/cms/demo"
+      },
+      "build": "npm run build:pre",
+      "branch": "pre"
+    }
+  ],
+  "prod": [
+    {
+      "ali": {
+        "region": "cn-hongkong",
+        "bucket": "hk-default",
+        "appPath": "/cms/demo"
+      },
+      "build": "npm run build:prod",
+      "branch": "master"
+    }
+  ]
+}

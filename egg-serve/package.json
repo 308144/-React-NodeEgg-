@@ -1,0 +1,53 @@
+{
+  "name": "egg-serve",
+  "version": "1.0.0",
+  "description": "后端服务",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "egg": "^3",
+    "egg-cors": "^2.2.3",
+    "egg-jwt": "^3.1.7",
+    "egg-mongoose": "^3.3.1",
+    "egg-scripts": "^2",
+    "egg-validate": "^2.0.2",
+    "egg-view-nunjucks": "^2.3.0",
+    "isarray": "^2.0.5",
+    "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "egg-bin": "^5",
+    "egg-ci": "^2",
+    "egg-mock": "^5",
+    "eslint": "^8",
+    "eslint-config-egg": "^12"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-egg-serve",
+    "stop": "egg-scripts stop --title=egg-server-egg-serve",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov"
+  },
+  "ci": {
+    "version": "16, 18",
+    "type": "github"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "dbfront",
+  "license": "MIT"
+}
