@@ -1,7 +1,6 @@
 import axios from 'axios'
 import service from '@/api/service'
 
-// axios.defaults.baseURL = 'http://127.0.0.1:7001/nodeServe'
 // 创建信息
 export const createInformation = data => {
   return axios.post('/front/createInformation', data)
@@ -23,10 +22,5 @@ export const updateOneInformation = params => {
 
 // 回显数据
 export const echoOneInformationData = phone => {
-  return service({ url: `/front/echoOneInformationData/${phone}`, method: 'get' })
-}
-
-// 回显数据
-export const echoServiceOneInformationData = phone => {
   return service({ url: `/front/echoOneInformationData/${phone}`, method: 'get' })
 }

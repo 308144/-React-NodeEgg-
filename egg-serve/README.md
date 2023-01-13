@@ -1,5 +1,10 @@
-ctx
+如果前后端请求通了，尽量不要动http状态，可以设置返回的数据code为。。。
+本项目中如果没有携带cookie返回401，没有登录
+如果携带cookie后token过期，或者token不匹配返回权限错误
 
+
+
+ctx
 ctx.helper.success({})
 ctx.request
 this.ctx.body

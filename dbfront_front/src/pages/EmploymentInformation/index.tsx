@@ -1,11 +1,4 @@
-import {
-  DownOutlined,
-  EllipsisOutlined,
-  PlusOutlined,
-  SettingOutlined,
-  UpOutlined,
-} from '@ant-design/icons'
-import cookie from 'react-cookies'
+import { PlusOutlined, SettingOutlined } from '@ant-design/icons'
 
 import moment from 'moment'
 import {
@@ -14,7 +7,6 @@ import {
   removeOneInformation,
   updateOneInformation,
   echoOneInformationData,
-  echoServiceOneInformationData,
 } from './api'
 import { RefData } from './api/type'
 import { ActionType, idIDIntl, ProColumns } from '@ant-design/pro-components'
@@ -29,21 +21,18 @@ import './index.less'
 const { Option } = Select
 
 type GithubIssueItem = {
-  url: string
-  id: number
-  number: number
-  title: string
-  labels: {
-    name: string
-    color: string
-  }[]
-  state: string
-  comments: number
-  created_at: string
-  updated_at: string
-  closed_at?: string
+  class: string
+  competencyRequirements: string
+  employmentPost: string
+  employmentTimer: string
+  employmentUnits: string
+  employmentUnitsAddress: string
+  name: string
+  phone: string
+  sex: number
+  specialized: string
+  treatment: string
 }
-
 const EmploymentInformation: React.FC = () => {
   // 是否收起搜索表单
   const [searchCollapsed, setSearchCollapsed] = useState<boolean>(false)
@@ -56,16 +45,6 @@ const EmploymentInformation: React.FC = () => {
   const actionRef = useRef<ActionType>()
 
   const [form] = Form.useForm()
-
-  // const days = async () => {
-
-  //   const res = await echoServiceOneInformationData('15845500411')
-  // }
-
-  // useEffect(() => {
-
-  //   days()
-  // }, [])
   // 表格的编辑删除
   const content = record => {
     return (
@@ -99,13 +78,13 @@ const EmploymentInformation: React.FC = () => {
   }
   // 修改数据
   const updateOneData = async record => {
-    setIsUpdate(true)
+    setIsUpdate(true) //按钮变成修改
     const { phone } = record
     setUpdatePhoneState(phone)
     const echoRes = await echoOneInformationData(phone)
     const { data } = echoRes
-    resitFormDataRef.current = data.data.records[0]
-    if (data.code === 0) {
+    resitFormDataRef.current = data.records[0]
+    if (echoRes.code === 0) {
       setIsModalOpen(true)
       form.setFieldsValue({
         class: resitFormDataRef.current.class,
@@ -178,6 +157,10 @@ const EmploymentInformation: React.FC = () => {
       dataIndex: 'employmentTimer',
       ellipsis: true,
       hideInSearch: true,
+      render: (_, record) => {
+        const { employmentTimer } = record
+        return employmentTimer.slice(0, 10)
+      },
     },
     {
       key: 'employmentPost',
@@ -297,7 +280,6 @@ const EmploymentInformation: React.FC = () => {
       size: pageSize,
       ...params,
     })
-    const { data } = res.data
     const output = convertListDataToProTable(res.data)
     return output
   }
@@ -506,7 +488,13 @@ const EmploymentInformation: React.FC = () => {
       />
       <Modal
         width={1000}
-        title='Basic Modal'
+        title={
+          [
+            <div key='1' className='modal'>
+              <h2>个人信息</h2>
+            </div>,
+          ]
+        }
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}

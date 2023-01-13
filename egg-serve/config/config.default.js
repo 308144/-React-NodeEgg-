@@ -16,7 +16,7 @@ module.exports = (appInfo) => {
   config.keys = appInfo.name + "_1672280709716_6857";
 
   // add your middleware config here
-  config.middleware = ['cros'];
+  config.middleware = ['errorHandler','cros'];
 
   // 处理post请求的csrf
   config.security = {

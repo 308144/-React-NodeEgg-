@@ -13,12 +13,12 @@ class AdminService extends Service {
         code: 1,
       };
     } else {
-      // const isMatch = await ctx.helper.comparePassword(
-      //   body.password,
-      //   oldUser.password
-      // );
+      const isMatch = await ctx.helper.comparePassword(
+        body.password,
+        oldUser.password
+      );
       console.log(body.password, oldUser.password);
-      if (false) {
+      if (!isMatch) {
         return {
           msg: "手机号或密码错误",
           code: 1,
@@ -30,12 +30,12 @@ class AdminService extends Service {
           //  ctx.app.config.jwt.secret
           "123",
           {
-            expiresIn: "48h",
+            expiresIn: '48h',
           }
         );
         ctx.cookies.set("token", token, {
           maxAge: 86400000,
-          httpOnly: true,
+          httpOnly: false,
         });
         return {
           data: {

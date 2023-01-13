@@ -19,6 +19,9 @@ module.exports = (app) => {
   // 删除
   router.get(baseRouter + "/reomve/:id", controller.login.adminRemove);
 
+
+
+
   // 创建就业信息
   router.post(baseRouter + "/createInformation", controller.information.create);
   // 查询学员列表页
@@ -40,6 +43,14 @@ module.exports = (app) => {
     controller.information.echoOneInformationData
   );
 
+
+
+    // 就业统计
+    router.get(baseRouter+'/employmentStatisticsList/:specialized',controller.statisticsInformation.findAll)
+
+
+
+    
   // 信息列表页
-  router.post("/information", controller.information);
+  // router.post("/information", controller.information);
 };

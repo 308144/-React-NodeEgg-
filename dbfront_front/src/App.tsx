@@ -11,7 +11,7 @@ const App = () => {
 
   /** 初始化重定向 */
   const init = () => {
-    if (tokenStorage.getItem()) {
+    if (tokenStorage.getItem() && document.cookie) {
       if (pathname === '/') navigate('/home')
     } else if (pathname !== '/login') {
       message.error('账号过期，请重新登录')
