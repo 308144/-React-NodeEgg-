@@ -65,11 +65,15 @@ const EmploymentInformation: React.FC = () => {
   }
   // 删除按钮
   const deleteOneData = async record => {
-    const { phone } = record
-    const res = await removeOneInformation(phone)
-    //
-    const { data } = res
-    if (data.code === 0) {
+    const { phone,specialized ,employmentUnits,employmentPost
+    } = record
+    const res = await removeOneInformation( { phone,specialized ,employmentUnits,employmentPost
+    })
+
+    // const { data } = res
+    // console.log(res);
+
+    if (res.code === 0) {
       message.success('删除成功')
     } else {
       message.error('删除失败')

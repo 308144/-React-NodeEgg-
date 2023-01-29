@@ -29,7 +29,6 @@ class InformationService extends Service {
     const { current, size } = params;
     delete params.current;
     delete params.size;
-    // console.log({...params});
     const findData = await ctx.model.Information.find({
       ...params,
     })

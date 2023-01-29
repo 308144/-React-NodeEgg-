@@ -10,15 +10,19 @@ export const findInformation = params => {
   return axios.post('/front/findInformation', params)
 }
 
-// 删除单个数据
-export const removeOneInformation = phone => {
-  return axios.get(`/front/removeInformation/${phone}`)
-}
+
 
 // 修改单个数据
 export const updateOneInformation = params => {
   return axios.post(`/front/updateOneInformation`, params)
 }
+
+
+// 删除单个数据
+export const removeOneInformation = data => {
+  return service({ url: `/front/removeInformation`,data:data, method: 'post' })
+}
+
 
 // 回显数据
 export const echoOneInformationData = phone => {

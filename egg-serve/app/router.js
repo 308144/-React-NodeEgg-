@@ -6,7 +6,7 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = (app) => {
-  const { router, controller ,jwt} = app;
+  const { router, controller, jwt } = app;
   // console.log('jwt',jwt);
   const baseRouter = app.config.baseRouter; //
   router.get("/", controller.home.index);
@@ -19,16 +19,13 @@ module.exports = (app) => {
   // 删除
   router.get(baseRouter + "/reomve/:id", controller.login.adminRemove);
 
-
-
-
   // 创建就业信息
   router.post(baseRouter + "/createInformation", controller.information.create);
   // 查询学员列表页
   router.post(baseRouter + "/findInformation", controller.information.findAll);
   // 删除
-  router.get(
-    baseRouter + "/removeInformation/:phone",
+  router.post(
+    baseRouter + "/removeInformation",
     controller.information.removeOneInformation
   );
   // 修改
@@ -43,14 +40,16 @@ module.exports = (app) => {
     controller.information.echoOneInformationData
   );
 
-
-
-    // 就业统计
-    router.get(baseRouter+'/employmentStatisticsList/:specialized',controller.statisticsInformation.findAll)
-
-
-
-    
+  // 就业统计
+  router.get(
+    baseRouter + "/employmentStatisticsList/:currencyType",
+    controller.statisticsInformation.findAll
+  );
+  // 就业统计详情
+  router.post(
+    baseRouter + "/findDetailData",
+    controller.statisticsInformation.findDetailData
+  );
   // 信息列表页
   // router.post("/information", controller.information);
 };

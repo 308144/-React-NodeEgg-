@@ -1,11 +1,10 @@
 import { Button, Space, Table, Tag } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EmploymentStatisticsList } from '@/pages/EmploymentStatistics/api'
-
+import { useNavigate } from 'react-router-dom'
 interface ITabPaneParameter {
   currencyType: string
-  activeTab: string
 }
 
 interface ISpecializedDataType {
@@ -24,18 +23,27 @@ interface IEnterpriseDataType {
   employedNumber: string
   key?: string
 }
+// 专业
 export const Specialized = (props: ITabPaneParameter) => {
+  const [specializedState, setSpecializedState] = useState()
+  const navigate = useNavigate()
   const { currencyType } = props
-
-  const getListData = async(currencyType) => {
-
-    const res=await EmploymentStatisticsList(currencyType)
-    console.log('系统的',res);
-
-
+  const getListData = async currencyType => {
+    const res = await EmploymentStatisticsList(currencyType)
+    const { data } = res
+    data.forEach((item, index) => {
+      item['key'] = index + 1
+    })
+    setSpecializedState(data)
+  }
+  useEffect(() => {
+    getListData(currencyType)
+  }, [currencyType])
+  const findDetail = (currencyType, record) => {
+    const { specialized } = record
+    navigate('/detail', { state: { currencyType, specialized } })
   }
 
-  useEffect(() => {getListData(currencyType)}, [])
   const columns: ColumnsType<ISpecializedDataType> = [
     {
       align: 'center',
@@ -46,27 +54,50 @@ export const Specialized = (props: ITabPaneParameter) => {
     {
       align: 'center',
       title: '就业人数',
-      dataIndex: 'employedNumber',
-      key: 'employedNumber',
+      dataIndex: 'specializedNumber',
+      key: 'specialized',
     },
     {
       align: 'center',
       title: '操作',
       key: 'option',
-      render: (_, record) => <Button type='primary'>查看详情</Button>,
+      render: (_, record) => (
+        <Button
+          type='primary'
+          onClick={() => {
+            findDetail(currencyType, record)
+          }}
+        >
+          查看详情
+        </Button>
+      ),
     },
   ]
-  const data: ISpecializedDataType[] = [
-    { key: '1', specialized: '网络工程', employedNumber: '1' },
-    { key: '2', specialized: '通信工程', employedNumber: '2' },
-    { key: '3', specialized: '电子工程', employedNumber: '3' },
-    { key: '4', specialized: '大数据信息', employedNumber: '4' },
-  ]
-
-  return <Table columns={columns} dataSource={data} />
+  return <Table columns={columns} dataSource={specializedState} />
 }
-
+// 岗位
 export const Post = (props: ITabPaneParameter) => {
+  const [postState, setPostState] = useState()
+  const navigate = useNavigate()
+
+  const { currencyType } = props
+  const getListData = async currencyType => {
+    const res = await EmploymentStatisticsList(currencyType)
+    const { data } = res
+    data.forEach((item, index) => {
+      item['key'] = index + 1
+    })
+    setPostState(data)
+  }
+
+  useEffect(() => {
+    getListData(currencyType)
+  }, [currencyType])
+  const findDetail = (currencyType, record) => {
+    const { post } = record
+    navigate('/detail', { state: { currencyType, post } })
+  }
+
   const columns: ColumnsType<IPostDataType> = [
     {
       align: 'center',
@@ -77,29 +108,51 @@ export const Post = (props: ITabPaneParameter) => {
     {
       align: 'center',
       title: '就业人数',
-      dataIndex: 'employedNumber',
-      key: 'employedNumber',
+      dataIndex: 'postNumber',
+      key: 'postNumber',
     },
     {
       align: 'center',
       title: '操作',
       key: 'option',
-      render: (_, record) => <Button type='primary'>查看详情</Button>,
+      render: (_, record) => (
+        <Button
+          type='primary'
+          onClick={() => {
+            findDetail(currencyType, record)
+          }}
+        >
+          查看详情
+        </Button>
+      ),
     },
   ]
-  const data: IPostDataType[] = [
-    { key: '1', post: 'Web前端', employedNumber: '1' },
-    { key: '2', post: 'Java后端', employedNumber: '2' },
-    { key: '3', post: 'php', employedNumber: '3' },
-    { key: '4', post: 'go', employedNumber: '4' },
-    { key: '5', post: '服务器', employedNumber: '5' },
-  ]
 
-  return <Table columns={columns} dataSource={data} />
+  return <Table columns={columns} dataSource={postState} />
 }
 
-// 单位
+// 企业
 export const Enterprise = (props: ITabPaneParameter) => {
+  const [enterpriseState, setEnterpriseState] = useState()
+  const { currencyType } = props
+  const navigate = useNavigate()
+  const getListData = async currencyType => {
+    const res = await EmploymentStatisticsList(currencyType)
+    const { data } = res
+    data.forEach((item, index) => {
+      item['key'] = index + 1
+    })
+    setEnterpriseState(data)
+  }
+
+  useEffect(() => {
+    getListData(currencyType)
+  }, [currencyType])
+
+  const findDetail = (currencyType, record) => {
+    const { enterprise } = record
+    navigate('/detail', { state: { currencyType, enterprise } })
+  }
   const columns: ColumnsType<IEnterpriseDataType> = [
     {
       align: 'center',
@@ -110,22 +163,24 @@ export const Enterprise = (props: ITabPaneParameter) => {
     {
       align: 'center',
       title: '就业人数',
-      dataIndex: 'employedNumber',
-      key: 'employedNumber',
+      dataIndex: 'enterpriseNumber',
+      key: 'enterpriseNumber',
     },
     {
       align: 'center',
       title: '操作',
       key: 'option',
-      render: (_, record) => <Button type='primary'>查看详情</Button>,
+      render: (_, record) => (
+        <Button
+          type='primary'
+          onClick={() => {
+            findDetail(currencyType, record)
+          }}
+        >
+          查看详情
+        </Button>
+      ),
     },
   ]
-  const data: IEnterpriseDataType[] = [
-    { key: '1', enterprise: '字节', employedNumber: '77' },
-    { key: '2', enterprise: '好未来', employedNumber: '88' },
-    { key: '3', enterprise: '知乎', employedNumber: '99' },
-    { key: '4', enterprise: '京东', employedNumber: '98' },
-  ]
-
-  return <Table columns={columns} dataSource={data} />
+  return <Table columns={columns} dataSource={enterpriseState} />
 }
