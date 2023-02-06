@@ -68,11 +68,11 @@ export default defineConfig({
     port: 8000,
     // 待配置配置
     proxy: {
-      '/front': {
-        target: 'http://localhost:7001/nodeServe',
+      '/nodeServe': {
+        target: 'http://localhost:7001',
         changeOrigin: true,
         secure: false,
-        rewrite: path => path.replace(/^\/front/, ''),
+        // rewrite: path => path.replace(/^\/front/, ''),
       },
     },
 

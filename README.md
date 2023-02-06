@@ -81,7 +81,7 @@ export default service
 
 使用// 回显数据
 export const echoOneInformationData = phone => {
-  return service({ url: `/front/echoOneInformationData/${phone}`, method: 'get' })
+  return service({ url: `/nodeServe/echoOneInformationData/${phone}`, method: 'get' })
 }
 
 

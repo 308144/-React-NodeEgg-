@@ -1,7 +1,7 @@
 import service from '@/api/service';
 export const EmploymentStatisticsList = (currentType) => {
     return service({
-        url: `/front/employmentStatisticsList/${currentType}`,
+        url: `/nodeServe/employmentStatisticsList/${currentType}`,
         method: 'get',
     });
 };

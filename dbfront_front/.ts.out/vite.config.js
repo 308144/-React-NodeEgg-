@@ -59,7 +59,7 @@ export default defineConfig({
         host: '0.0.0.0',
         port: 8000,
         proxy: {
-            '/front': {
+            '/nodeServe': {
                 target: 'http://localhost:7001/nodeServe',
                 changeOrigin: true,
                 secure: false,

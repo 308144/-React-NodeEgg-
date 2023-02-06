@@ -155,7 +155,7 @@ const detailSpecialized: React.FC = () => {
             persistenceKey: 'pro-table-singe-demos',
             persistenceType: 'localStorage',
           }}
-          rowKey='id'
+          rowKey='_id'
           search={{
             labelWidth: 'auto',
           }}

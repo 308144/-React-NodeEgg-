@@ -4,9 +4,9 @@ import axios from 'axios'
 
 // 用户登录
 export const userLogin = (data: ILoginData) => {
-  return axios.post('/front/login', data)
+  return axios.post('/nodeServe/login', data)
 }
 // 用户登出，清楚token设计
 export const logoutByMobile = () => {
-  return axios.post('/front/logout')
+  return axios.post('/nodeServe/logout')
 }
