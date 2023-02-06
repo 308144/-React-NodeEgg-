@@ -1,148 +1,153 @@
 const Service = require("egg").Service;
 
 class StatisticsInformationService extends Service {
-  // 创建专业统计
-  async createSpecialized(data) {
-    const { ctx } = this;
-    console.log("data", data);
-    const specialized = data.specialized;
-    //  console.log(ctx.model.specialized);
-    const findSpecializedData = await ctx.model.Specialized.findOne({
-      specialized: specialized,
-    });
-    console.log("findSpecializedData", findSpecializedData);
-    if (findSpecializedData) {
-      findSpecializedData.specializedNumber++;
-      await ctx.model.Specialized.updateOne(
-        { specialized: findSpecializedData.specialized },
-        {
-          $set: { ...findSpecializedData },
-        }
-      );
-    } else {
-      const specializedData = {
-        specialized: specialized,
-        specializedNumber: 1,
-      };
-      await ctx.model.Specialized.create(specializedData);
-    }
-  }
-  // 删除专业统计
-  async deleteSpecialized(data) {
-    const { ctx } = this;
-    console.log("data", data);
-    const specialized = data.specialized;
-    const findSpecializedData = await ctx.model.Specialized.findOne({
-      specialized: specialized,
-    });
-    // console.log("findSpecializedData", findSpecializedData);
-    if (findSpecializedData) {
-      findSpecializedData.specializedNumber--;
-      await ctx.model.Specialized.updateOne(
-        { specialized: findSpecializedData.specialized },
-        {
-          $set: { ...findSpecializedData },
-        }
-      );
-    } else {
-      throw Error("删除专业统计出错了");
-    }
-  }
-  // 创建岗位统计
-  async createPost(data) {
-    const { ctx } = this;
-    console.log("data", data);
-    const post = data.employmentPost;
-    console.log("post", post);
-    const findPostData = await ctx.model.Post.findOne({
-      post: post,
-    });
-    if (findPostData) {
-      findPostData.postNumber++;
-      await ctx.model.Post.updateOne(
-        { post: findPostData.post },
-        {
-          $set: { ...findPostData },
-        }
-      );
-    } else {
-      const postData = { post: post, postNumber: 1 };
-      await ctx.model.Post.create(postData);
-    }
-  }
-  // 删除岗位统计
-  async deletePost(data) {
-    const { ctx } = this;
-    console.log("data", data);
-    const post = data.employmentPost;
-    console.log("post", post);
-    const findPostData = await ctx.model.Post.findOne({
-      post: post,
-    });
-    console.log("findPostData", findPostData);
-    if (findPostData) {
-      findPostData.postNumber--;
-      await ctx.model.Post.updateOne(
-        { post: findPostData.post },
-        {
-          $set: { ...findPostData },
-        }
-      );
-    } else {
-      throw Error("删除岗位统计出错了");
-    }
-  }
-  // 创建企业统计
-  async createEnterprise(data) {
-    const { ctx } = this;
-    console.log("data", data);
-    const enterprise = data.employmentUnits;
-    const findEnterpriseData = await ctx.model.Enterprise.findOne({
-      enterprise: enterprise,
-    });
-    if (findEnterpriseData) {
-      findEnterpriseData.enterpriseNumber++;
-      await ctx.model.Enterprise.updateOne(
-        { enterprise: findEnterpriseData.enterprise },
-        {
-          $set: { ...findEnterpriseData },
-        }
-      );
-    } else {
-      const enterpriseData = {
-        enterprise: enterprise,
-        enterpriseNumber: 1,
-      };
-      await ctx.model.Enterprise.create(enterpriseData);
-    }
-  }
-  // 删除企业统计
-  async deleteEnterprise(data) {
-    const { ctx } = this;
-    console.log("data", data);
-    const enterprise = data.employmentUnits;
-    const findEnterpriseData = await ctx.model.Enterprise.findOne({
-      enterprise: enterprise,
-    });
-    if (findEnterpriseData) {
-      findEnterpriseData.enterpriseNumber--;
-      await ctx.model.Enterprise.updateOne(
-        { enterprise: findEnterpriseData.enterprise },
-        {
-          $set: { ...findEnterpriseData },
-        }
-      );
-    } else {
-      throw Error("删除企业统计出错了");
-    }
-  }
-
+  // // 创建专业统计
+  // async createSpecialized(data) {
+  //   const { ctx } = this;
+  //   console.log("data", data);
+  //   const specialized = data.specialized;
+  //   //  console.log(ctx.model.specialized);
+  //   const findSpecializedData = await ctx.model.Specialized.findOne({
+  //     specialized: specialized,
+  //   });
+  //   console.log("findSpecializedData", findSpecializedData);
+  //   if (findSpecializedData) {
+  //     findSpecializedData.specializedNumber++;
+  //     await ctx.model.Specialized.updateOne(
+  //       { specialized: findSpecializedData.specialized },
+  //       {
+  //         $set: { ...findSpecializedData },
+  //       }
+  //     );
+  //   } else {
+  //     const specializedData = {
+  //       specialized: specialized,
+  //       specializedNumber: 1,
+  //     };
+  //     await ctx.model.Specialized.create(specializedData);
+  //   }
+  // }
+  // // 删除专业统计
+  // async deleteSpecialized(data) {
+  //   const { ctx } = this;
+  //   console.log("data", data);
+  //   const specialized = data.specialized;
+  //   const findSpecializedData = await ctx.model.Specialized.findOne({
+  //     specialized: specialized,
+  //   });
+  //   // console.log("findSpecializedData", findSpecializedData);
+  //   if (findSpecializedData) {
+  //     findSpecializedData.specializedNumber--;
+  //     await ctx.model.Specialized.updateOne(
+  //       { specialized: findSpecializedData.specialized },
+  //       {
+  //         $set: { ...findSpecializedData },
+  //       }
+  //     );
+  //   } else {
+  //     throw Error("删除专业统计出错了");
+  //   }
+  // }
+  // // 创建岗位统计
+  // async createPost(data) {
+  //   const { ctx } = this;
+  //   console.log("data", data);
+  //   const post = data.employmentPost;
+  //   console.log("post", post);
+  //   const findPostData = await ctx.model.Post.findOne({
+  //     post: post,
+  //   });
+  //   if (findPostData) {
+  //     findPostData.postNumber++;
+  //     await ctx.model.Post.updateOne(
+  //       { post: findPostData.post },
+  //       {
+  //         $set: { ...findPostData },
+  //       }
+  //     );
+  //   } else {
+  //     const postData = { post: post, postNumber: 1 };
+  //     await ctx.model.Post.create(postData);
+  //   }
+  // }
+  // // 删除岗位统计
+  // async deletePost(data) {
+  //   const { ctx } = this;
+  //   console.log("data", data);
+  //   const post = data.employmentPost;
+  //   console.log("post", post);
+  //   const findPostData = await ctx.model.Post.findOne({
+  //     post: post,
+  //   });
+  //   console.log("findPostData", findPostData);
+  //   if (findPostData) {
+  //     findPostData.postNumber--;
+  //     await ctx.model.Post.updateOne(
+  //       { post: findPostData.post },
+  //       {
+  //         $set: { ...findPostData },
+  //       }
+  //     );
+  //   } else {
+  //     throw Error("删除岗位统计出错了");
+  //   }
+  // }
+  // // 创建企业统计
+  // async createEnterprise(data) {
+  //   const { ctx } = this;
+  //   console.log("data", data);
+  //   const enterprise = data.employmentUnits;
+  //   const findEnterpriseData = await ctx.model.Enterprise.findOne({
+  //     enterprise: enterprise,
+  //   });
+  //   if (findEnterpriseData) {
+  //     findEnterpriseData.enterpriseNumber++;
+  //     await ctx.model.Enterprise.updateOne(
+  //       { enterprise: findEnterpriseData.enterprise },
+  //       {
+  //         $set: { ...findEnterpriseData },
+  //       }
+  //     );
+  //   } else {
+  //     const enterpriseData = {
+  //       enterprise: enterprise,
+  //       enterpriseNumber: 1,
+  //     };
+  //     await ctx.model.Enterprise.create(enterpriseData);
+  //   }
+  // }
+  // // 删除企业统计
+  // async deleteEnterprise(data) {
+  //   const { ctx } = this;
+  //   console.log("data", data);
+  //   const enterprise = data.employmentUnits;
+  //   const findEnterpriseData = await ctx.model.Enterprise.findOne({
+  //     enterprise: enterprise,
+  //   });
+  //   if (findEnterpriseData) {
+  //     findEnterpriseData.enterpriseNumber--;
+  //     await ctx.model.Enterprise.updateOne(
+  //       { enterprise: findEnterpriseData.enterprise },
+  //       {
+  //         $set: { ...findEnterpriseData },
+  //       }
+  //     );
+  //   } else {
+  //     throw Error("删除企业统计出错了");
+  //   }
+  // }
+  // 按专业统计、按岗位统计、按企业统计
   async findAll(params) {
     const { ctx } = this;
     console.log("就业统计的", params);
     if (params.currencyType === "1") {
-      const SpecializedData = await ctx.model.Specialized.find({});
-      if (SpecializedData.length) {
+      // const SpecializedData = await ctx.model.Specialized.find({});
+      const SpecializedData = await ctx.model.Information.aggregate([
+        { $group: { _id: "$specialized", specializedNumber: { $sum: 1 } } },
+      ]);
+      console.log("SpecializedData", SpecializedData);
+
+      if (SpecializedData) {
         return {
           code: 0,
           data: SpecializedData,
@@ -150,8 +155,13 @@ class StatisticsInformationService extends Service {
         };
       }
     } else if (params.currencyType === "2") {
-      const PostData = await ctx.model.Post.find({});
-      if (PostData.length) {
+      // const PostData = await ctx.model.Post.find({});
+      const PostData = await ctx.model.Information.aggregate([
+        { $group: { _id: "$employmentPost", postNumber: { $sum: 1 } } },
+      ]);
+      console.log("PostData", PostData);
+
+      if (PostData) {
         return {
           code: 0,
           data: PostData,
@@ -159,7 +169,12 @@ class StatisticsInformationService extends Service {
         };
       }
     } else {
-      const EnterpriseData = await ctx.model.Enterprise.find({});
+      // const EnterpriseData = await ctx.model.Enterprise.find({});
+      const EnterpriseData = await ctx.model.Information.aggregate([
+        { $group: { _id: "$employmentUnits", enterpriseNumber: { $sum: 1 } } },
+      ]);
+      console.log("EnterpriseData", EnterpriseData);
+
       if (EnterpriseData.length) {
         return {
           code: 0,
@@ -169,9 +184,9 @@ class StatisticsInformationService extends Service {
       }
     }
   }
+  // 用户统计中的查看详情
   async findDetailData(dataParams) {
     const { ctx } = this;
-
     const { params, data } = dataParams;
     const { current, pageSize } = params;
     const { currentTypeState, detailData } = data;
@@ -209,7 +224,6 @@ class StatisticsInformationService extends Service {
         .limit(pageSize);
       const postTotal = await ctx.model.Information.find({
         post: detailData,
-      
       }).count();
       console.log("findPostData", findPostData);
       return {

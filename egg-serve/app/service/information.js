@@ -3,7 +3,6 @@ const Service = require("egg").Service;
 class InformationService extends Service {
   async create(body) {
     const { ctx } = this;
-    const name = body.name;
     const phone = body.phone;
     const findData = await ctx.model.Information.findOne({
       phone: phone,

@@ -17,7 +17,11 @@ module.exports = (appInfo) => {
 
   // add your middleware config here
   config.middleware = ['errorHandler','cros'];
-
+  config.multipart = {
+    mode: 'file',
+    whitelist: ['.xlsx'], 
+  };
+  
   // 处理post请求的csrf
   config.security = {
     csrf: {

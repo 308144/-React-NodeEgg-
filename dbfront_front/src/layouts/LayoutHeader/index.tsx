@@ -5,7 +5,7 @@ import imgs from '@/assets/img/img.jpg'
 import styles from './index.module.less'
 import { useMemoizedFn } from '@/hooks'
 import { logoutByMobile } from '@/pages/Login/api'
-import {tokenStorage} from '@/common/localStorage'
+import {tokenStorage,userStorage} from '@/common/localStorage'
 
 const { Header } = Layout
 
@@ -21,8 +21,10 @@ const MainHeader: React.FC = () => {
         if (res.data.code === 0) {
           message.success('退出登录成功')
           tokenStorage.removeItem()
+          userStorage.removeItem()
         }
         navigate('/login')
+
         break;
       default:
         break;

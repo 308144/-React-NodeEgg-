@@ -1,4 +1,3 @@
-import { ShoppingOutlined } from '@ant-design/icons'
 import React from 'react'
 
 import { Route } from './index'
@@ -7,6 +6,8 @@ import EmploymentInformation from '@/pages/EmploymentInformation'
 import EmploymentStatistics from '@/pages/EmploymentStatistics'
 import EmploymentStatisticsDetail from '@/pages/EmploymentStatistics/EmploymentStatisticsDetail'
 import UserManager from '@/pages/UserManager'
+import Teacher from '@/pages/Teacher'
+import Faculty from '@/pages/Faculty'
 
 export default [
   {
@@ -25,9 +26,19 @@ export default [
     element: React.createElement(UserManager),
   },
   {
-    hideInMenu: true,
+    hideInMenu:true,
     name: '详情',
     path: '/detail',
     element: React.createElement(EmploymentStatisticsDetail),
+  },
+  {
+    name: '教师管理',
+    path: '/teacher',
+    element: React.createElement(Teacher),
+  },
+  {
+    name: '院系管理',
+    path: '/faculty',
+    element: React.createElement(Faculty),
   },
 ] as Route[]

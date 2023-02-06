@@ -1,4 +1,4 @@
-import { Button, Space, Table, Tag } from 'antd'
+import { Button, Table } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React, { useEffect, useState } from 'react'
 import { EmploymentStatisticsList } from '@/pages/EmploymentStatistics/api'
@@ -8,18 +8,18 @@ interface ITabPaneParameter {
 }
 
 interface ISpecializedDataType {
-  specialized: string
+  _id: string
   employedNumber: string
   key?: string
 }
 
 interface IPostDataType {
-  post: string
+  _id: string
   employedNumber: string
   key?: string
 }
 interface IEnterpriseDataType {
-  enterprise: string
+  _id: string
   employedNumber: string
   key?: string
 }
@@ -40,22 +40,22 @@ export const Specialized = (props: ITabPaneParameter) => {
     getListData(currencyType)
   }, [currencyType])
   const findDetail = (currencyType, record) => {
-    const { specialized } = record
-    navigate('/detail', { state: { currencyType, specialized } })
+    const { _id } = record
+    navigate('/detail', { state: { currencyType, _id } })
   }
 
   const columns: ColumnsType<ISpecializedDataType> = [
     {
       align: 'center',
       title: '学生专业',
-      dataIndex: 'specialized',
+      dataIndex: '_id',
       key: 'specialized',
     },
     {
       align: 'center',
       title: '就业人数',
       dataIndex: 'specializedNumber',
-      key: 'specialized',
+      key: 'specializedNumber',
     },
     {
       align: 'center',
@@ -94,15 +94,15 @@ export const Post = (props: ITabPaneParameter) => {
     getListData(currencyType)
   }, [currencyType])
   const findDetail = (currencyType, record) => {
-    const { post } = record
-    navigate('/detail', { state: { currencyType, post } })
+    const { _id } = record
+    navigate('/detail', { state: { currencyType, _id } })
   }
 
   const columns: ColumnsType<IPostDataType> = [
     {
       align: 'center',
       title: '就业岗位',
-      dataIndex: 'post',
+      dataIndex: '_id',
       key: 'post',
     },
     {
@@ -150,14 +150,14 @@ export const Enterprise = (props: ITabPaneParameter) => {
   }, [currencyType])
 
   const findDetail = (currencyType, record) => {
-    const { enterprise } = record
-    navigate('/detail', { state: { currencyType, enterprise } })
+    const { _id } = record
+    navigate('/detail', { state: { currencyType, _id } })
   }
   const columns: ColumnsType<IEnterpriseDataType> = [
     {
       align: 'center',
       title: '就业单位',
-      dataIndex: 'enterprise',
+      dataIndex: '_id',
       key: 'enterprise',
     },
     {

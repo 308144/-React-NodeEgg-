@@ -10,11 +10,11 @@ class InformationController extends Controller {
     const data = ctx.request.body;
     const res = await service.information.create(data);
     console.log("create", res);
-    if (res.code === 0) {
-      await service.statisticsInformation.createSpecialized(data);
-      await service.statisticsInformation.createPost(data);
-      await service.statisticsInformation.createEnterprise(data);
-    }
+    // if (res.code === 0) {
+    //   await service.statisticsInformation.createSpecialized(data);
+    //   await service.statisticsInformation.createPost(data);
+    //   await service.statisticsInformation.createEnterprise(data);
+    // }
     ctx.helper.success({
       ctx,
       res,
@@ -38,11 +38,11 @@ class InformationController extends Controller {
     console.log("data", data);
     const res = await service.information.deleteOneInformation(data);
     console.log("res", res);
-    if (res.code === 0) {
-      await service.statisticsInformation.deleteSpecialized(data);
-      await service.statisticsInformation.deletePost(data);
-      await service.statisticsInformation.deleteEnterprise(data);
-    }
+    // if (res.code === 0) {
+    //   await service.statisticsInformation.deleteSpecialized(data);
+    //   await service.statisticsInformation.deletePost(data);
+    //   await service.statisticsInformation.deleteEnterprise(data);
+    // }
     ctx.helper.success({
       ctx,
       res,
@@ -55,14 +55,6 @@ class InformationController extends Controller {
     console.log('data三',data);
     const res = await service.information.updateOneInformation(data);
     console.log('res',res);
-    // if (res.code === 0) {
-    //   await service.statisticsInformation.deleteSpecialized(data);
-    //   await service.statisticsInformation.deletePost(data);
-    //   await service.statisticsInformation.deleteEnterprise(data);
-    //   await service.statisticsInformation.createSpecialized(data);
-    //   await service.statisticsInformation.createPost(data);
-    //   await service.statisticsInformation.createEnterprise(data);
-    // }
     ctx.helper.success({
       ctx,
       res,

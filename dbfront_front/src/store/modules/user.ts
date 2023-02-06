@@ -4,8 +4,10 @@ import { LocalStorage } from '@/common/localStorage'
 import { useMemoizedFn } from '@/hooks'
 
 export interface IUserInfo {
-  name: string
-  userId: number
+  userName: string
+  token: string
+  identity: string
+  userId:number
 }
 
 const userInfoStorage = new LocalStorage<IUserInfo>('user', {})

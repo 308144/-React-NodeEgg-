@@ -9,18 +9,17 @@ module.exports = (app) => {
     {
       userName: { type: String, required: true },
       password: { type: String, required: true },
+      identity: { type: String },
     },
     // mongdb数据库是对自动创建s的，我们在这里专门设置限制
     { collect: "admin", versionKey: false }
   );
   const AdminModel = mongoose.model("Admin", AdminSchema);
 
-  let adminUser = { userName: "15845500411", password: "dbfront" };
+  let adminUser = { userName: "15845500411", password: "dbfront" , identity: 'manager'};
   helper.genSaltPassword(adminUser.password).then(async (hash) => {
     adminUser.password = hash;
     const oldUser = await AdminModel.find({ userName: adminUser.userName });
-    // console.log(oldUser);
-    // console.log(oldUser);
     if (oldUser.length === 0) {
       AdminModel.create(adminUser);
     }

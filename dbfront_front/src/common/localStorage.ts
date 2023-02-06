@@ -39,6 +39,7 @@ export class LocalStorage<T> implements ILocalStorage<T> {
 }
 
 export const tokenStorage = new LocalStorage<string>('Token', '')
+export const userStorage=new LocalStorage<string>('User','')
 // 清除当前项目的本地存储
 export const clearLocalStorage = () => {
   for (const key in localStorage) {

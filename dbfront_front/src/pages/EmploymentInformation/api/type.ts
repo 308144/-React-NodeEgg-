@@ -1,4 +1,7 @@
 export interface RefData {
+  teacher: string
+  faculty: string
+  teacherPhone: string
   class: string
   competencyRequirements: string
   employmentPost: string

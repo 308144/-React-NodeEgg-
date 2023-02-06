@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../../src/pages/EmploymentStatistics/api/index.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,eAAe,CAAA;AAEnC,MAAM,CAAC,MAAM,wBAAwB,GAAG,CAAC,WAAmB,EAAE,EAAE;IAC9D,OAAO,OAAO,CAAC;QACb,GAAG,EAAE,mCAAmC,WAAW,EAAE;QACrD,MAAM,EAAE,KAAK;KACd,CAAC,CAAA;AACJ,CAAC,CAAA"}

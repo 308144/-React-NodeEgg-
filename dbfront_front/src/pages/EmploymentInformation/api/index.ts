@@ -28,3 +28,13 @@ export const removeOneInformation = data => {
 export const echoOneInformationData = phone => {
   return service({ url: `/front/echoOneInformationData/${phone}`, method: 'get' })
 }
+
+
+// 查询老师数据
+export const getSelectTeacherDatas = data => {
+  return service({ url: `/front/selectTeacherDatas/${data}`, method: 'get' })
+}
+// 查询教师的手机号
+export const getInformationModalTeacherPhoneData = data => {
+  return service({ url: '/front/getInformationModalTeacherPhoneData',data, method: 'post' })
+}

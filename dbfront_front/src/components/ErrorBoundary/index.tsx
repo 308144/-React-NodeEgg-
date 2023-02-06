@@ -24,7 +24,6 @@ class ErrorBoundary extends PureComponent<ErrorBoundaryProps, ErrorBoundaryState
   }
 
   componentDidUpdate(): void {
-    // @ts-ignore
     const key = this._reactInternals?.key
     if (key !== lastKey) {
       this.setState({ hasError: false, message: '页面出现异常' })

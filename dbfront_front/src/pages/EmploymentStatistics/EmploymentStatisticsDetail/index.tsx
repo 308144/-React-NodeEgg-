@@ -21,15 +21,15 @@ const detailSpecialized: React.FC = () => {
     setCurrentTypeState(state.currencyType)
     if (state.currencyType === '1') {
       setTitle('专业')
-      setDetailData(state.specialized)
+      setDetailData(state._id)
       setProperty('specialized')
     } else if (state.currencyType === '2') {
       setTitle('岗位')
-      setDetailData(state.post)
+      setDetailData(state._id)
       setProperty('employmentPost')
     } else {
       setTitle('企业')
-      setDetailData(state.enterprise)
+      setDetailData(state._id)
       setProperty('employmentUnits')
     }
   }

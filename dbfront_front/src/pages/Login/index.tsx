@@ -4,15 +4,16 @@ import { useNavigate } from 'react-router-dom'
 
 import styles from './index.module.less'
 
-import { tokenStorage } from '@/common/localStorage'
+import { tokenStorage,userStorage } from '@/common/localStorage'
 import { useMemoizedFn } from '@/hooks'
 import { ILoginParams } from '@/pages/Login/api/types'
 // import { useModel } from '@/store'
 import { userLogin } from './api'
-
+import { useModel } from '@/store'
+import {phoneRules} from '@/utils/tools'
 /** 登录页面 */
 const LogInPage: React.FC = () => {
-  // const { setUserInfo } = useModel('user')
+  const { setUserInfo } = useModel('user')
   const navigate = useNavigate()
   const [form] = Form.useForm()
   // 重置按钮
@@ -24,13 +25,10 @@ const LogInPage: React.FC = () => {
     const res = await userLogin(values)
     const { data } = res.data
     if (res.data.code === 0) {
-      // 保存user数据到local里
-      const user = { name: data.userName, userId: data.userId }
-      // console.log(`${data.token}`)
-
-      // tokenStorage.setItem(`Bearer ${data.token}`)
+     const userData=JSON.stringify(res.data.data)
+      userStorage.setItem(userData)
+      setUserInfo(res.data.data)
       tokenStorage.setItem(`${data.token}`)
-      // setUserInfo(user)
       navigate('/home')
       message.success('登录成功')
     } else {
@@ -46,30 +44,7 @@ const LogInPage: React.FC = () => {
     }
   }, [])
 
-  /**
-   *  正则存储
-   *  @author coiner
-   * * */
-  // 手机号正则
-  const Iphone_reg = /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/
 
-  // 手机号验证
-  const phoneRules = {
-    phoneExtensionsData: [
-      {
-        require: true,
-        validator(_: any, value: string) {
-          if (value === undefined || value === '' || !isNaN(Number(value)) === false) {
-            return Promise.reject(new Error(`请输入手机号`))
-          } else if (!Iphone_reg.test(value)) {
-            return Promise.reject(new Error(`请输入正确手机号`))
-          } else {
-            return Promise.resolve()
-          }
-        },
-      },
-    ],
-  }
   return (
     <div className={styles.box}>
       <div className={styles.child}>
