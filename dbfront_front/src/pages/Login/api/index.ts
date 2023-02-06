@@ -1,6 +1,6 @@
 import { ILoginData } from './types'
 import axios from 'axios'
-// axios.defaults.baseURL = 'http://127.0.0.1:7001/nodeServe'
+axios.defaults.baseURL = `${process.env.NODE_ENV === 'production' ? 'http://116.62.175.219:7001' : ''}`
 
 // 用户登录
 export const userLogin = (data: ILoginData) => {

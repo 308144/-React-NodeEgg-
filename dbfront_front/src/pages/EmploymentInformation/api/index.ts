@@ -1,5 +1,6 @@
 import axios from 'axios'
 import service from '@/api/service'
+axios.defaults.baseURL = `${process.env.NODE_ENV === 'production' ? 'http://116.62.175.219:7001' : ''}`
 
 // 创建信息
 export const createInformation = data => {
