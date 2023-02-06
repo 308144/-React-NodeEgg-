@@ -6,7 +6,7 @@ import { tokenStorage } from '@/common/localStorage'
 const service = axios.create({
   timeout: 10000,
   withCredentials: true,
-  baseURL: process.env.NODE_ENV === 'production' ? 'http://116.62.175.219:7001' : ''
+  // baseURL: process.env.NODE_ENV === 'production' ? 'http://116.62.175.219:7001' : ''
 })
 
 service.interceptors.request.use(
