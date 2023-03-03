@@ -50,9 +50,6 @@ module.exports = (app) => {
   // 信息列表页
   // router.post("/information", controller.information);
 
-
-
-
   // 查询所有用户
   router.post(baseRouter + "/findAllUser", controller.login.findAllUser);
   // 删除用户
@@ -64,20 +61,9 @@ module.exports = (app) => {
   );
   // 修改数据用户数据
   router.post(baseRouter + "/updateUser", controller.login.updateUser);
-  
+
   // 上传文件并解析文件
   router.post(baseRouter + "/uploadExcle", controller.login.uploadExcle);
-  
-
-
-
-
-
-
-
-
-
-
 
   // 创建学院
   router.post(baseRouter + "/facultyCreate", controller.faculty.facultyCreate);
@@ -101,9 +87,6 @@ module.exports = (app) => {
   // 查询所有学员信息
   router.get(baseRouter + "/getFacultyData", controller.faculty.getFacultyData);
 
-
-
-
   // 新增教师信息
   router.post(baseRouter + "/teacherCreate", controller.teacher.teacherCreate);
   // 查询教师列表
@@ -124,10 +107,71 @@ module.exports = (app) => {
   // 修改院系用户数据
   router.post(baseRouter + "/updateTeacher", controller.teacher.updateTeacher);
   // // 查询所有教师信息
-  router.get(baseRouter + "/selectTeacherDatas/:faculty", controller.teacher.selectTeacherDatas);
-    // 查询教师的手机号
-    router.post(baseRouter + "/getInformationModalTeacherPhoneData/", controller.teacher.getInformationModalTeacherPhoneData);
+  router.get(
+    baseRouter + "/selectTeacherDatas/:faculty",
+    controller.teacher.selectTeacherDatas
+  );
+  // 查询教师的手机号
+  router.post(
+    baseRouter + "/getInformationModalTeacherPhoneData/",
+    controller.teacher.getInformationModalTeacherPhoneData
+  );
 
+  // 招聘的
+  // 创建
+  router.post(
+    baseRouter + "/recruitmenCreate",
+    controller.recruitmen.recruitmenCreate
+  );
+  // 查询所有
+  router.post(
+    baseRouter + "/findAllRecruitmen",
+    controller.recruitmen.findAllRecruitmen
+  );
+  //删除
+  router.get(
+    baseRouter + "/removeOneRecruitmen/:id",
+    controller.recruitmen.removeOneRecruitmen
+  );
+  //删除
+  router.get(
+    baseRouter + "/echoOneRecruitmenData/:id",
+    controller.recruitmen.echoOneRecruitmenData
+  );
+  //删除
+  router.post(
+    baseRouter + "/updateRecruitmen",
+    controller.recruitmen.updateRecruitmen
+  );
+
+
+
+  // 宣讲会
+  // 创建
+  router.post(
+    baseRouter + "/recruitmenCampusCreate",
+    controller.recruitmenCampus.recruitmenCampusCreate
+  );
+  // 查询所有
+  router.post(
+    baseRouter + "/findAllRecruitmenCampus",
+    controller.recruitmenCampus.findAllRecruitmenCampus
+  );
+  //删除
+  router.get(
+    baseRouter + "/removeOneRecruitmenCampus/:id",
+    controller.recruitmenCampus.removeOneRecruitmenCampus
+  );
+  //删除
+  router.get(
+    baseRouter + "/echoOneRecruitmenCampusData/:id",
+    controller.recruitmenCampus.echoOneRecruitmenCampusData
+  );
+  //删除
+  router.post(
+    baseRouter + "/updateRecruitmenCampus",
+    controller.recruitmenCampus.updateRecruitmenCampus
+  );
 
 
 

@@ -1,15 +1,16 @@
 import { ActionType, GridContent, PageContainer, ProColumns } from '@ant-design/pro-components'
 import { ProTable } from '@ant-design/pro-components'
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { useRef } from 'react'
 import { convertListDataToProTable } from '@/utils/tools'
 import { Button, Popover } from 'antd'
 import { PlusOutlined, SettingOutlined } from '@ant-design/icons'
-import { AddUserModal } from '@/pages/Teacher/Modal'
-import { useModel } from '@/store'
-import styles from './index.module.less'
+import { AddUserModal } from '@/pages/Faculty/Faculty/Modal'
 
-import { findAllTeacher,echoOneTeacherData } from '@/pages/Teacher/api'
+import styles from './index.module.less'
+import { useModel } from '@/store'
+
+import { findAllFaculty, echoOneFacultyData } from '@/pages/Faculty/Faculty/api'
 const detailSpecialized: React.FC = () => {
   const actionRef = useRef<ActionType>()
   const { userInfo } = useModel('user')
@@ -31,9 +32,7 @@ const detailSpecialized: React.FC = () => {
       valueType: 'index',
       width: 48,
     },
-    { align: 'center', title: '教师姓名', dataIndex: 'teacherName', ellipsis: true },
-    { align: 'center', title: '所属院系', dataIndex: 'faculty', ellipsis: true },
-    { align: 'center', title: '教师手机号', dataIndex: 'teacherPhone', ellipsis: true },
+    { align: 'center', title: '院系', dataIndex: 'faculty', ellipsis: true },
     {
       align: 'center',
       title: '操作',
@@ -61,11 +60,11 @@ const detailSpecialized: React.FC = () => {
       </div>
     )
   }
-  // 回显数据
+  // 修改数据
   const updateOneData = async record => {
     //按钮变成修改
     const { _id } = record
-    const echoRes = await echoOneTeacherData(_id)
+    const echoRes = await echoOneFacultyData(_id)
     const { data } = echoRes
     if (echoRes.code === 0) {
       setId(_id)
@@ -74,6 +73,20 @@ const detailSpecialized: React.FC = () => {
       setIsUpdate(true)
     }
   }
+  // // 删除按钮
+  // const deleteOneData = async record => {
+  //   const { _id } = record
+  //   // console.log('_id',_id);
+
+  //   const res = await removeOneFaculty(_id)
+
+  //   if (res.code === 0) {
+  //     message.success('删除用户成功')
+  //   } else {
+  //     message.error('删除用户失败')
+  //   }
+  //   actionRef.current.reload()
+  // }
   // 刷新方法，传递给弹窗
   const reload = () => {
     actionRef.current.reload()
@@ -85,7 +98,7 @@ const detailSpecialized: React.FC = () => {
         params[key] = params[key].trim()
       }
     }
-    const res = await findAllTeacher({
+    const res = await findAllFaculty({
       ...params,
     })
     const output = convertListDataToProTable(res)
@@ -116,7 +129,7 @@ const detailSpecialized: React.FC = () => {
               icon={<PlusOutlined />}
               type='primary'
             >
-              新增教师
+              新增院系
             </Button>,
           ]}
           columns={columns}

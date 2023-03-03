@@ -3,7 +3,7 @@ import { ProTable } from '@ant-design/pro-components'
 import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import { findDetailData } from '@/pages/EmploymentStatistics/EmploymentStatisticsDetail/api'
+import { findDetailData } from '@/pages/EmploymentManager/EmploymentStatistics/EmploymentStatisticsDetail/api'
 import { convertListDataToProTable } from '@/utils/tools'
 
 const detailSpecialized: React.FC = () => {

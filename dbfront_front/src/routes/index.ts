@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import demoRoutes from './demo'
+import demoRoutes from './employmentManager'
 import errorRoutes from './error'
 import userRoutes from './user'
 
@@ -10,7 +10,7 @@ import HomePage from '@/pages/Home'
 export interface Route {
   name?: string
   path: string
-  icon?: string
+  icon?: React.ReactNode
   // 页面是否包含Menu菜单
   hideMenu?: boolean
   // menu菜单中是否隐藏
@@ -27,13 +27,7 @@ export interface Route {
 
 const indexRoutes: Route[] = [{ path: '/home', name: '欢迎', element: ErrorBoundary(HomePage) }]
 
-
 // 首页
 // const indexRoutes:Route[]=[{path:'/home',name:'首页',element:ErrorBoundary(HomePage)}]
 
-export const routes =
-  [...indexRoutes,
-   ...userRoutes,
-  ...demoRoutes,
-  ...errorRoutes
-  ] as Route[]
+export const routes = [...indexRoutes, ...userRoutes, ...demoRoutes, ...errorRoutes] as Route[]

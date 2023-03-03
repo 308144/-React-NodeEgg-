@@ -2,7 +2,7 @@ import { Button, Form, FormInstance, Input, message, Modal, Select } from 'antd'
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.less'
 
-import { teacherCreate, updateTeacher } from '@/pages/Teacher/Modal/api'
+import { teacherCreate, updateTeacher } from '@/pages/TeacherSudentMan/Teacher/Modal/api'
 
 import { useModel } from '@/store'
 import { getFacultyData } from '@/api'
@@ -33,7 +33,7 @@ const AddUserModal = (props: IAddUserModal) => {
 
   useEffect(() => {
     setIsModalOpen(isModalOpen)
-    console.log('facultyInfo',facultyInfo);
+    console.log('facultyInfo', facultyInfo)
 
     if (facultyInfo) {
       selectData()
@@ -97,7 +97,7 @@ const AddUserModal = (props: IAddUserModal) => {
       }
     } else {
       setIsUpdateLoading(true)
-      const res = await updateTeacher({ values, id,teacherPhone:formRefData.teacherPhone })
+      const res = await updateTeacher({ values, id, teacherPhone: formRefData.teacherPhone })
       if (res.code === 0) {
         setIsUpdateLoading(false)
         setIsModalOpen(false)

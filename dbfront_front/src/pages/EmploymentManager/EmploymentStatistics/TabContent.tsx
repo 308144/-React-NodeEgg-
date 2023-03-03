@@ -1,7 +1,7 @@
 import { Button, Table } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React, { useEffect, useState } from 'react'
-import { EmploymentStatisticsList } from '@/pages/EmploymentStatistics/api'
+import { EmploymentStatisticsList } from '@/pages/EmploymentManager/EmploymentStatistics/api'
 import { useNavigate } from 'react-router-dom'
 interface ITabPaneParameter {
   currencyType: string

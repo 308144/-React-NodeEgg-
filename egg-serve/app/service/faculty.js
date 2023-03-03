@@ -4,9 +4,9 @@ class FacultyService extends Service {
   async facultyCreate(body) {
     const { ctx } = this;
     const faculty = body.faculty;
-    // const findData = await ctx.model.Faculty.findOne({
-    //   faculty: faculty,
-    // });
+    const findData = await ctx.model.Faculty.findOne({
+      faculty: faculty,
+    });
     // console.log("findData", findData);
     if (findData) {
       return {
@@ -92,12 +92,12 @@ class FacultyService extends Service {
   }
   // 修改
   async updateFaculty(params) {
-    console.log('params',params);
+    console.log("params", params);
     const { ctx } = this;
-    const { values, id ,original} = params;
+    const { values, id, original } = params;
     const findRes = await ctx.model.Faculty.find({ faculty: values.faculty });
-    console.log('findRes',findRes);
-    if (findRes.length!==0) {
+    console.log("findRes", findRes);
+    if (findRes.length !== 0) {
       return {
         code: 1,
         data: null,
@@ -109,11 +109,11 @@ class FacultyService extends Service {
         { $set: { ...values } }
       );
       if (res.ok === 1) {
-     await ctx.model.Teacher.updateMany(
+        await ctx.model.Teacher.updateMany(
           { faculty: original },
           { $set: { ...values } }
         );
-     await ctx.model.Information.updateMany(
+        await ctx.model.Information.updateMany(
           { faculty: original },
           { $set: { ...values } }
         );

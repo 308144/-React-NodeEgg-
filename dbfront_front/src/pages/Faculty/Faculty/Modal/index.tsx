@@ -1,7 +1,7 @@
 import { Button, Form, FormInstance, Input, message, Modal } from 'antd'
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.less'
-import { facultyCreate, updateFaculty } from '@/pages/Faculty/Modal/api'
+import { facultyCreate, updateFaculty } from '@/pages/Faculty/Faculty/Modal/api'
 import { useModel } from '@/store'
 import { getFacultyData } from '@/api'
 
@@ -71,7 +71,7 @@ const AddUserModal = (props: IAddUserModal) => {
     } else {
       // 修改逻辑
       setIsUpdateLoading(true)
-      const res = await updateFaculty({ values, id ,original:formRefData.faculty})
+      const res = await updateFaculty({ values, id, original: formRefData.faculty })
       if (res.code === 0) {
         getFaculty()
         setIsUpdateLoading(false)
